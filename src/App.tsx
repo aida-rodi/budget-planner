@@ -44,15 +44,35 @@ function App() {
 
   const handleNumPagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
-    setNumPages(value || 0);
+    setNumPages(value || 1);
   };
 
   const handleNumLanguagesChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const value = parseInt(event.target.value);
-    setNumLanguages(value || 0);
+    setNumLanguages(value || 1);
   };
+
+  const increasePages = () => {
+    setNumPages(numPages + 1)
+  }
+
+  const decreasePages = () => {
+    if (numPages === 1) {
+      setNumPages(numPages)
+    } else {setNumPages(numPages - 1)}
+  }
+
+  const increaseLanguages = () => {
+    setNumLanguages(numLanguages + 1)
+  }
+
+  const decreaseLanguages = () => {
+    if (numLanguages === 1) {
+      setNumLanguages(numLanguages)
+    } else {setNumLanguages(numLanguages - 1)}
+  }
 
   return (
     <>
@@ -75,23 +95,39 @@ function App() {
               <div className='inputDiv'>
                 <p>
                   <label>Number of pages</label>
+                  <button 
+                    className='inputButton'
+                    onClick={decreasePages}
+                  >-</button>
                   <input
-                    type="number"
+                    type="text"
                     className='numInput'
                     id={`numPages_${index}`}
                     value={numPages}
                     onChange={handleNumPagesChange}
                   />
+                  <button 
+                    className='inputButton'
+                    onClick={increasePages}
+                  >+</button>
                 </p>
                 <p>
                   <label>Number of languages</label>
+                  <button 
+                    className='inputButton'
+                    onClick={decreaseLanguages}
+                  >-</button>
                   <input
-                    type="number"
+                    type="text"
                     className='numInput'
                     id={`numLanguages_${index}`}
                     value={numLanguages}
                     onChange={handleNumLanguagesChange}
                   />
+                  <button 
+                    className='inputButton'
+                    onClick={increaseLanguages}
+                  >+</button>
                 </p>
               </div>
             )}
