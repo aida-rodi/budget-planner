@@ -77,11 +77,18 @@ button:focus-visible {
   background-color: rgb(214, 86, 22);
   color: white;
   font-weight: 900;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin: 0 0.2em;
-  margin-left: 0.5em;
   text-align: center;
+}
+
+.inputText1 {
+  margin-right: 2.3rem;
+}
+
+.inputText2 {
+  margin-right: 0.5rem;
 }
 
 @media (prefers-color-scheme: light) {

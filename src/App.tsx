@@ -13,6 +13,20 @@ function App() {
   const [numLanguages, setNumLanguages] = useState(1);
 
   useEffect(() => {
+    const savedCheckedState = window.localStorage.getItem("checkedState");
+    const savedNumPages = window.localStorage.getItem("numPages");
+    const savedNumLanguages = window.localStorage.getItem("numLanguages");
+
+    if (savedCheckedState !== null) setCheckedState(JSON.parse(savedCheckedState));
+    if (savedNumPages !== null) setNumPages(JSON.parse(savedNumPages));
+    if (savedNumLanguages !== null) setNumLanguages(JSON.parse(savedNumLanguages));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("checkedState", JSON.stringify(checkedState));
+    localStorage.setItem("numPages", JSON.stringify(numPages));
+    localStorage.setItem("numLanguages", JSON.stringify(numLanguages));
+
     calculateTotal();
   }, [checkedState, numPages, numLanguages]);
 
@@ -94,7 +108,7 @@ function App() {
             {index === 0 && checkedState[index] && (
               <div className='inputDiv'>
                 <p>
-                  <label>Number of pages</label>
+                  <label className='inputText1'>Number of pages</label>
                   <button 
                     className='inputButton'
                     onClick={decreasePages}
@@ -112,7 +126,7 @@ function App() {
                   >+</button>
                 </p>
                 <p>
-                  <label>Number of languages</label>
+                  <label className='inputText2'>Number of languages</label>
                   <button 
                     className='inputButton'
                     onClick={decreaseLanguages}
