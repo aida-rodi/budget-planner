@@ -55,7 +55,7 @@ button:hover {
 }
 button:active {
   background-color: #a6adb2;
-  transition: all 0.1s ease-out;
+  transition: all 0.1s ease;
 }
 
 .startButton {
@@ -63,12 +63,39 @@ button:active {
   padding: 0.7em 1em;
 }
 
+.helpButtonDiv {
+  margin: 0;
+  padding: 0;
+}
+
+.popup-button{
+  padding: 0;
+  margin: 0;
+  margin-left: 0.25em;
+  background: none;
+  color: #a6adb2;
+  font-size: 1.25em;
+}
+.popup-button:hover {
+  background: none;
+  color: #8c9296;
+}
+.popup-button:active {
+  background: none;
+  color: #7c8184;
+}
+
+.popup-content {
+  text-align: center;
+  border-radius: 10px;
+}
+
 .welcomeDiv {
   text-align: center;
 }
 
 .inputDiv {
-  border: 2px solid black;
+  border: 2px solid #242424;
   border-radius: 10px;
   padding: 1em;
   display: flex;
@@ -83,13 +110,19 @@ button:active {
 }
 
 .inputButton {
-  background-color: rgb(214, 86, 22);
+  background-color: #d65616;
   color: white;
   font-weight: 900;
   width: 35px;
   height: 35px;
   margin: 0 0.2em;
   text-align: center;
+}
+.inputButton:hover {
+  background-color: #a74311;
+}
+.inputButton:active {
+  background-color: #963809;
 }
 
 .inputText1 {

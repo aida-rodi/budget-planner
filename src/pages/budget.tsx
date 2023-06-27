@@ -1,35 +1,41 @@
 import { data } from '../assets/data';
 import { useEffect, useState } from 'react';
+import HelpButton from '../components/HelpButton';
 
 function Budget() {
   
-  const formattedPrice = (price: number) => `${price.toFixed(0)}€`;
+  const formattedPrice = (totalPrice: number) => `${totalPrice.toFixed(0)}€`;
     
   const [checkedState, setCheckedState] = useState(new Array(data.length).fill(false));
-  const [total, setTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [numPages, setNumPages] = useState(1);
   const [numLanguages, setNumLanguages] = useState(1);
 
+  // ================= LOCAL STORAGE =================
   useEffect(() => {
     const savedCheckedState = window.localStorage.getItem("checkedState");
     const savedNumPages = window.localStorage.getItem("numPages");
     const savedNumLanguages = window.localStorage.getItem("numLanguages");
+    const savedTotalPrice = window.localStorage.getItem("totalPrice");
     
     if (savedCheckedState !== null) setCheckedState(JSON.parse(savedCheckedState));
     if (savedNumPages !== null) setNumPages(JSON.parse(savedNumPages));
     if (savedNumLanguages !== null) setNumLanguages(JSON.parse(savedNumLanguages));
+    if (savedTotalPrice !== null) setTotalPrice(JSON.parse(savedTotalPrice));
   }, []);
 
   useEffect(() => {
     window.localStorage.setItem("checkedState", JSON.stringify(checkedState));
     localStorage.setItem("numPages", JSON.stringify(numPages));
     localStorage.setItem("numLanguages", JSON.stringify(numLanguages));
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     
     calculateTotal();
-  }, [checkedState, numPages, numLanguages]);
-
+  }, [checkedState, numPages, numLanguages, totalPrice]);
+// ===================================================
+  
   const calculateTotal = () => {
-    let totalPrice = checkedState.reduce((sum, currentState, index) => {
+    let calculatedTotal = checkedState.reduce((sum, currentState, index) => {
       if (currentState) {
         return sum + data[index].price;
       }
@@ -37,10 +43,10 @@ function Budget() {
     }, 0);
     
     if (checkedState[0]) {
-      totalPrice += numPages * numLanguages * 30;
+      calculatedTotal += numPages * numLanguages * 30;
     }
     
-    setTotal(totalPrice);
+    setTotalPrice(calculatedTotal);
   };
 
   const changeState = (index: number) => {
@@ -121,7 +127,8 @@ function Budget() {
                   <button className="inputButton" onClick={increasePages}>
                     +
                   </button>
-                </p>
+                  <HelpButton numPages={numPages} numLanguages={numLanguages}/>
+                </p >
                 <p>
                   <label className="inputText2">Number of languages</label>
                   <button className="inputButton" onClick={decreaseLanguages}>
@@ -137,6 +144,7 @@ function Budget() {
                   <button className="inputButton" onClick={increaseLanguages}>
                     +
                   </button>
+                  <HelpButton numLanguages={numLanguages} numPages={numPages}/>
                 </p>
               </div>
             )}
@@ -144,7 +152,7 @@ function Budget() {
         );
       })}
 
-      <p>Total: {formattedPrice(total)}</p>
+      <p>Total: {formattedPrice(totalPrice)}</p>
     </div>
   );
 };
