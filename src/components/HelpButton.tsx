@@ -12,7 +12,7 @@ const HelpButton:FC<Props> = ({ numPages, numLanguages }) => {
   const [showPopup, setShowPopup] = useState(false);
 
   const getMessage = () => {
-    if (numPages !== undefined) {
+    if (numPages !== 0) {
       return (
         <div>
           <h5>Please use this component to indicate the number pages your website will have.</h5>
@@ -20,7 +20,7 @@ const HelpButton:FC<Props> = ({ numPages, numLanguages }) => {
       );
     }
 
-    if (numLanguages !== undefined) {
+    if (numLanguages !== 0) {
       return (
         <div>
           <h5>Please use this component to indicate the number languages your website will be translated to.</h5>

@@ -127,7 +127,7 @@ function Budget() {
                   <button className="inputButton" onClick={increasePages}>
                     +
                   </button>
-                  <HelpButton numPages={numPages} numLanguages={numLanguages}/>
+                  <HelpButton numPages={numPages} numLanguages={0}/>
                 </p >
                 <p>
                   <label className="inputText2">Number of languages</label>
@@ -144,7 +144,7 @@ function Budget() {
                   <button className="inputButton" onClick={increaseLanguages}>
                     +
                   </button>
-                  <HelpButton numLanguages={numLanguages} numPages={numPages}/>
+                  <HelpButton numLanguages={numLanguages} numPages={0}/>
                 </p>
               </div>
             )}
