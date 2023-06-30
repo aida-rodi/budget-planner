@@ -4,26 +4,26 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 interface Props {
-  numPages: number
-  numLanguages: number
+  pagesPopup: boolean
+  languagesPopup: boolean
 }
 
-const HelpButton:FC<Props> = ({ numPages, numLanguages }) => {
+const HelpButton:FC<Props> = ({ pagesPopup, languagesPopup }) => {
   const [showPopup, setShowPopup] = useState(false);
 
   const getMessage = () => {
-    if (numPages !== 0) {
+    if (pagesPopup === true) {
       return (
         <div>
-          <h5>Please use this component to indicate the number pages your website will have.</h5>
+          <h5>Please use this component to indicate the number of pages your website will have.</h5>
         </div>
       );
     }
 
-    if (numLanguages !== 0) {
+    if (languagesPopup === true) {
       return (
         <div>
-          <h5>Please use this component to indicate the number languages your website will be translated to.</h5>
+          <h5>Please use this component to indicate the number of languages your website will be translated to.</h5>
         </div>
       );
     }
@@ -37,7 +37,7 @@ const HelpButton:FC<Props> = ({ numPages, numLanguages }) => {
         <FaInfoCircle />
       </button>
 
-      <Popup open={showPopup} onClose={() => setShowPopup(false)}>
+      <Popup className="helpPopup" open={showPopup} onClose={() => setShowPopup(false)}>
         {getMessage()}
       </Popup>
     </>

@@ -1,6 +1,9 @@
 import { data } from '../assets/data';
 import { useEffect, useState } from 'react';
 import HelpButton from '../components/HelpButton';
+import Popup from 'reactjs-popup';
+import SaveBudget from '../components/saveBudget';
+import PrintSavedBudgets from '../components/PrintSavedBudgets';
 
 function Budget() {
   
@@ -10,6 +13,8 @@ function Budget() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [numPages, setNumPages] = useState(1);
   const [numLanguages, setNumLanguages] = useState(1);
+  const [showSaveBudgetPopup, setShowSaveBudgetPopup] = useState(false);
+  const [savedBudgets, setSavedBudgets] = useState<Budget[]>([])
 
   // ================= LOCAL STORAGE =================
   useEffect(() => {
@@ -25,14 +30,14 @@ function Budget() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("checkedState", JSON.stringify(checkedState));
+    localStorage.setItem("checkedState", JSON.stringify(checkedState));
     localStorage.setItem("numPages", JSON.stringify(numPages));
     localStorage.setItem("numLanguages", JSON.stringify(numLanguages));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     
     calculateTotal();
   }, [checkedState, numPages, numLanguages, totalPrice]);
-// ===================================================
+  // ===================================================
   
   const calculateTotal = () => {
     let calculatedTotal = checkedState.reduce((sum, currentState, index) => {
@@ -57,14 +62,12 @@ function Budget() {
       setCheckedState(updatedCheckedState);
     };
 
-    const handleNumPagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseInt(event.target.value);
+  const handleNumPagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value);
     setNumPages(value || 1);
   };
 
-  const handleNumLanguagesChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+  const handleNumLanguagesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
     setNumLanguages(value || 1);
   };
@@ -92,6 +95,9 @@ function Budget() {
       setNumLanguages(numLanguages - 1);
     }
   };
+
+  // ============= SAVE BUDGET LOGIC ==================
+  // ==================================================
 
   return (
     <div>
@@ -127,7 +133,7 @@ function Budget() {
                   <button className="inputButton" onClick={increasePages}>
                     +
                   </button>
-                  <HelpButton numPages={numPages} numLanguages={0}/>
+                  <HelpButton pagesPopup={true} languagesPopup={false}/>
                 </p >
                 <p>
                   <label className="inputText2">Number of languages</label>
@@ -144,7 +150,7 @@ function Budget() {
                   <button className="inputButton" onClick={increaseLanguages}>
                     +
                   </button>
-                  <HelpButton numLanguages={numLanguages} numPages={0}/>
+                  <HelpButton languagesPopup={true} pagesPopup={false}/>
                 </p>
               </div>
             )}
@@ -153,6 +159,18 @@ function Budget() {
       })}
 
       <p>Total: {formattedPrice(totalPrice)}</p>
+      <div>
+        <button onClick={() => setShowSaveBudgetPopup(true)}>
+          Save budget
+        </button>
+        <Popup closeOnDocumentClick={false} closeOnEscape={false} className='saveBudgetPopup' open={showSaveBudgetPopup} onClose={() => setShowSaveBudgetPopup(false)}>
+          <SaveBudget setShowSaveBudgetPopup={setShowSaveBudgetPopup} checkedState={checkedState} total={totalPrice}/>
+        </Popup>
+      </div>
+
+      <div>
+        <PrintSavedBudgets savedBudgets={savedBudgets}/>
+      </div>
     </div>
   );
 };

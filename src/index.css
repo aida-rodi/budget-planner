@@ -14,15 +14,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #192938;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #192938;
-}
-
 body {
   display: flex;
   place-items: center;
@@ -30,31 +21,24 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-h4 {
-  font-size: 1.2em;
-  font-weight: 500;
-}
-
+/*================ BUTTONS ================*/
 button {
+  padding: 0.7em 1em;
   border-radius: 8px;
   border: none;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #d2dbe1;
+  background-color: #046dd6;
+  color: #ffffff;
   cursor: pointer;
 }
 button:hover {
-  background-color: #bfc8ce;
+  background-color: #1c88f3;
   transition: all 0.25s ease-out;
 }
 button:active {
-  background-color: #a6adb2;
+  background-color: #3797f7;
   transition: all 0.1s ease;
 }
 
@@ -72,6 +56,7 @@ button:active {
   padding: 0;
   margin: 0;
   margin-left: 0.25em;
+  border: none;
   background: none;
   color: #a6adb2;
   font-size: 1.25em;
@@ -85,31 +70,9 @@ button:active {
   color: #7c8184;
 }
 
-.popup-content {
-  text-align: center;
-  border-radius: 10px;
-}
-
-.welcomeDiv {
-  text-align: center;
-}
-
-.inputDiv {
-  border: 2px solid #242424;
-  border-radius: 10px;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-}
-
-.numInput {
-  border: none;
-  padding: 0.5em;
-  text-align: center;
-  width: 30px ;
-}
-
 .inputButton {
+  padding: 0;
+  border: none;
   background-color: #d65616;
   color: white;
   font-weight: 900;
@@ -125,6 +88,30 @@ button:active {
   background-color: #963809;
 }
 
+.saveBudgetButton {
+  margin: 1em 1em 0 0;
+}
+/*=========================================*/
+
+/*================ LINKS ==================*/
+a {
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #ffffff;
+}
+/*=========================================*/
+
+/*================ INPUTS =================*/
+.numInput {
+  border: none;
+  padding: 0.5em;
+  text-align: center;
+  width: 30px ;
+}
+
 .inputText1 {
   margin-right: 2.3rem;
 }
@@ -132,6 +119,55 @@ button:active {
 .inputText2 {
   margin-right: 0.5rem;
 }
+
+.saveBudgetInput {
+  padding: 0.5em;
+  margin-bottom: 1.5em;
+  font-size: 0.9em;
+}
+/*=========================================*/
+
+/*================= TEXT =================*/
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.helpPopup-content {
+  text-align: center;
+  border-radius: 10px;
+}
+
+.saveBudgetPopup-content {
+  border-radius: 10px;
+  padding: 6em;
+  width: fit-content;
+}
+/*=========================================*/
+
+/*================= DIVS ==================*/
+.welcomeDiv {
+  text-align: center;
+}
+
+.inputDiv {
+  border: 2px solid #242424;
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+/*=========================================*/
 
 @media (prefers-color-scheme: light) {
   :root {
