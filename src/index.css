@@ -17,14 +17,41 @@
 body {
   display: flex;
   place-items: center;
-  min-width: 320px;
+  justify-content: center;
   min-height: 100vh;
 }
+
+/*================= DIVS ==================*/
+.welcomeDiv {
+  text-align: center;
+}
+
+.inputDiv {
+  border: 2px solid #242424;
+  border-radius: 5px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.budgetDiv {
+  min-width: 90vw;
+  display: flex;
+  justify-content: center;
+}
+
+.savedBudgetsDiv {
+  margin-left: 5em;
+  border: 2px solid #242424;
+  border-radius: 5px;
+  padding: 0 3em 0 1em;
+}
+/*=========================================*/
 
 /*================ BUTTONS ================*/
 button {
   padding: 0.7em 1em;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   font-size: 1em;
   font-weight: 500;
@@ -122,7 +149,7 @@ a:hover {
 
 .saveBudgetInput {
   padding: 0.5em;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.2em;
   font-size: 0.9em;
 }
 /*=========================================*/
@@ -145,27 +172,42 @@ h5 {
 
 .helpPopup-content {
   text-align: center;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .saveBudgetPopup-content {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 6em;
   width: fit-content;
 }
-/*=========================================*/
 
-/*================= DIVS ==================*/
-.welcomeDiv {
-  text-align: center;
+.budgetTitle {
+  font-weight: 500;
 }
 
-.inputDiv {
-  border: 2px solid #242424;
-  border-radius: 10px;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
+.totalText {
+  font-weight: 500;
+}
+
+.saveBudgetDiv {
+  margin-top: 3em;
+}
+
+.saveBudgetTitle {
+  font-weight: 500;
+  margin-bottom: 2em;
+}
+
+.savedBudgetsTitle {
+  margin-right: 9em;
+  font-weight: 500;
+}
+/*=========================================*/
+
+/*================= LISTS =================*/
+ul {
+  list-style: none;
+  margin-bottom: 20px;
 }
 /*=========================================*/
 
